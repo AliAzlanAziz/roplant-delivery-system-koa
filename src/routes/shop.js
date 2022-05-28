@@ -8,8 +8,8 @@ const {
 
 router.get('/', heyShop)
 
-router.get('/', postSignup)
+router.post('/signup', postSignup)
 
-router.get('/', postSignin)
+router.post('/signin', postSignin)
 
 module.exports = router

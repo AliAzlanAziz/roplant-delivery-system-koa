@@ -1,6 +1,5 @@
-const { Sequelize, DataTypes } = require('sequelize')
-
-const Shop = sequelize.define('Shop', {
+module.exports = (sequelize, DataTypes) => {
+    const ShopModel = sequelize.define('shop', {
     // Model attributes are defined here
         id: {
             primaryKey: true,
@@ -25,5 +24,7 @@ const Shop = sequelize.define('Shop', {
     {
         // Other model options go here
         freezeTableName: true, //stop the auto-pluralization
-    }
-);
+    })
+
+    return ShopModel
+};

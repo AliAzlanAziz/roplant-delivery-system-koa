@@ -3,16 +3,18 @@ const koa = require('koa')
 const koaRouter = require('koa-router') // for routing
 const json = require('koa-json') // to pretty print response json
 const dotenv = require('dotenv') // to make environment variable available
-const db = require('./src/config/db')
+const { assert_connection } = require('./src/config/sequelize')
 const shop = require('./src/routes/shop') // routes for shop
 const price = require('./src/routes/price') // routes for price
 
 dotenv.config({ path: './src/config/config.env' }) // configure dotenv package to make env var available
 
-const PORT = process.env.PORT || 5001 // set port
+const PORT = process.env.SERVER_PORT || 5001 // set port
 
 const app = new koa({ proxy: true }) // initialize koa
 const router = new koaRouter() //initialize koa router
+
+// app.context.db = db(); //commenting this line because no more setting db context
 
 app.use(json()) // use json middleware
 
@@ -46,5 +48,5 @@ app.use(router.routes()).use(router.allowedMethods()) // use router middleware
 
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`)
-    db()
+    assert_connection()
 })
