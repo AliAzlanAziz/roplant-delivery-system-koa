@@ -1,6 +1,7 @@
 // require modules
 const koa = require('koa')
 const koaRouter = require('koa-router') // for routing
+const koaBody = require('koa-body') // for routing
 const json = require('koa-json') // to pretty print response json
 const dotenv = require('dotenv') // to make environment variable available
 const { assert_connection } = require('./src/config/sequelize')
@@ -17,6 +18,7 @@ const router = new koaRouter() //initialize koa router
 // app.context.db = db(); //commenting this line because no more setting db context
 
 app.use(json()) // use json middleware
+app.use(koaBody()) // use json middleware
 
 // logger
 app.use(async (ctx, next) => {
