@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     {
         // Other model options go here
         freezeTableName: true, //stop the auto-pluralization
+        timestamps: false
     })
 
     LocationModel.belongsTo(ShopModel, {
